@@ -5,4 +5,4 @@ plugins/*
 __pycache__
 .terraform.lock.hcl
 terraform.tfstate
-terraform.tfstate.backup
+terraform.tfstate.backup.DS_Store

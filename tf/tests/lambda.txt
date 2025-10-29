@@ -1,0 +1,8 @@
+# zip -j ingest_notifier.zip ingest_notifier.py
+
+
+
+aws dynamodb query \
+  --table-name media-catalog \
+  --key-condition-expression "assetId = :a AND ingestDate = :d" \
+  --expression-attribute-values '{":a":{"S":"696707a6-d0dd-4add-8c1e-9848dd500b09"},":d":{"S":"2025-10-28"}}'

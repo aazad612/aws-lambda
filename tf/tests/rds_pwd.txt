@@ -1,0 +1,21 @@
+aws secretsmanager describe-secret \                              
+  --secret-id media-intake-aurora-master \                     
+  --query 'ARN' --output text
+
+
+
+SECRET_ARN="arn:aws:secretsmanager:us-east-1:964591197557:secret:media-intake-aurora-master-tsEthV"
+aws secretsmanager get-secret-value \
+  --secret-id "$SECRET_ARN" \
+  --region us-east-1 \
+  --query SecretString \
+  --output text
+
+  {"password":"v\u0026EC\u003ceIjarhn_-7Wm*9j","username":"appadmin"}
+
+
+  import boto3, json
+client = boto3.client("secretsmanager", region_name="us-east-1")
+resp = client.get_secret_value(SecretId="arn:aws:secretsmanager:...")
+secret = json.loads(resp["SecretString"])
+print(secret["username"], secret["password"])
