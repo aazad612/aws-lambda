@@ -30,3 +30,35 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+}
+
+variable "num_azs" {
+  description = "Number of AZs to use (2-3 typical)"
+  type        = number
+}
+
+variable "az_names" {
+  description = "Optional explicit AZ names; if empty, first num_azs available AZs are used"
+  type        = list(string)
+}
+
+
+variable "nat_gateway_strategy" {
+  description = "NAT strategy: 'single' (cost saving) or 'one_per_az' (HA)"
+  type        = string
+  default     = "single"
+  validation {
+    condition     = contains(["single", "one_per_az"], var.nat_gateway_strategy)
+    error_message = "nat_gateway_strategy must be 'single' or 'one_per_az'."
+  }
+}
+
+# variable "key_pair_name" {
+#   type = string
+#   description = "Existing EC2 key pair name for SSH (or leave unused if you rely on SSM)"
+# }
+
