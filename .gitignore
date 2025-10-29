@@ -1,8 +1,8 @@
-
 docker/logs/*
 plugins/*
 .terraform
 __pycache__
 .terraform.lock.hcl
 terraform.tfstate
-terraform.tfstate.backup.DS_Store
+terraform.tfstate.backup
+.DS_Store
